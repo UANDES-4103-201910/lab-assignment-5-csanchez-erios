@@ -25,8 +25,14 @@ class EventsController < ApplicationController
       render json:@event
     end
   end
+
+  def upcoming_events
+    e = Event.find(:start_date <= Date.now + 90 & :start_date > Date.now)
+    return e
+    render json:@event
+  end
   private
   def event_params
-    params.require(:event).permit(:name, :description, :start_date)
+    params.require(:event).permit(:name, :description, :start_date, :event_venue_id)
   end
 end

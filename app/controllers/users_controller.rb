@@ -27,6 +27,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_with_most_tickets
+    usuario = User.select(:user).order(count(:order_id) ,desc).limit(1)
+    return usuario.name
+    render json:@event
+  end
+
   private
     def user_params
       params.require(:user).permit(:name,:lastname ,:email, :password, :address)

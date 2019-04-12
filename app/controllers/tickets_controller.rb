@@ -28,6 +28,6 @@ class TicketsController < ApplicationController
 
   private
   def ticket_params
-    params.require(:ticket).permit()
+    params.require(:ticket).permit(:ticket_type_id, :order_id)
   end
 end
